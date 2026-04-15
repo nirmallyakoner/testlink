@@ -1,26 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 @import "tailwindcss";
 
+/* ============================================
+   TESTLINK DESIGN SYSTEM — "Rank Red"
+   Professional. Competitive. India-first.
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --bg: #07070C;
+  --bg-surface: #0F0F18;
+  --bg-surface-2: #16162A;
+  --bg-surface-hover: #1C1C36;
+
+  /* Borders */
+  --border: #1E1E3A;
+  --border-hover: #2E2E52;
+
+  /* Primary — TestLink Red */
+  --primary: #E63946;
+  --primary-light: #FF6B6B;
+  --primary-dark: #C1121F;
+  --primary-glow: rgba(230, 57, 70, 0.12);
+
+  /* Text */
+  --text: #F0F0F5;
+  --text-secondary: #7C7C9A;
+  --text-muted: #4A4A68;
+
+  /* Accent — Rank Colors */
+  --gold: #FFB800;
+  --silver: #A8B0BE;
+  --bronze: #C47F32;
+
+  /* Status */
+  --success: #2DD4A8;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --info: #38BDF8;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--bg-surface);
+  --color-surface-2: var(--bg-surface-2);
+  --color-surface-hover: var(--bg-surface-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+  --color-bronze: var(--bronze);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   BASE
+   ============================================ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
+  50% { box-shadow: 0 0 40px var(--primary-glow), 0 0 60px var(--primary-glow); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(230,57,70,0.06), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-live { animation: live-pulse 1.5s ease-in-out infinite; }
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #FFB800, #FF8C00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(15, 15, 24, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Grid background for hero sections */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(30,30,58,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,30,58,0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.grid-bg-fade {
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* Hide scrollbar for nav pills */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

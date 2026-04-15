@@ -1,65 +1,91 @@
-import Image from "next/image";
+import { Navbar } from "@/components/landing/Navbar";
+import { Hero } from "@/components/landing/Hero";
+import { Stats } from "@/components/landing/Stats";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Features } from "@/components/landing/Features";
+import { Comparison } from "@/components/landing/Comparison";
+import { UseCases } from "@/components/landing/UseCases";
+import { FAQ } from "@/components/landing/FAQ";
+import { BlogPreview } from "@/components/landing/BlogPreview";
+import { CTA } from "@/components/landing/CTA";
+import { Footer } from "@/components/landing/Footer";
+
+// FAQ structured data for Google rich results
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is TestLink really free?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Unlimited tests, AI question parsing, live leaderboards, and student analytics — all free. The free plan supports up to 100 students per test.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do students need to download an app?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Students click the test link, sign in with Google in one tap, and start the test. Everything works in the browser.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What format should my questions be in?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Any format. Numbered lists, bulleted lists, tabular data, even messy copy-paste from PDFs. Our AI parser handles all of it — English, Hindi, and mixed languages.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does the leaderboard work?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "When a student submits their test, they see their rank among all students who have taken that test. Rankings are based on score first, then time taken. The leaderboard updates in real-time.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I see who took my test?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Your analytics dashboard shows every student's username, rank, score, and time taken.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What about student privacy?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Students sign in with Google, and we display only their generated username (not their email) on leaderboards. Educators can see usernames and scores, but not student email addresses.",
+      },
+    },
+  ],
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Navbar />
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        <Hero />
+        <Stats />
+        <HowItWorks />
+        <Features />
+        <Comparison />
+        <UseCases />
+        <FAQ />
+        <BlogPreview />
+        <CTA />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
