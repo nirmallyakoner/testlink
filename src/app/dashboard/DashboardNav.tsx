@@ -6,6 +6,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/Avatar";
 import { createClient } from "@/lib/supabase/client";
+import { Logo } from "@/components/ui/Logo";
 
 type Educator = {
   name: string;
@@ -38,9 +39,7 @@ export function DashboardNav({ educator }: { educator: Educator }) {
 
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
-            <div className="w-7 h-7 rounded-lg gradient-primary flex items-center justify-center">
-              <span className="text-white font-bold text-xs">T</span>
-            </div>
+            <Logo className="w-7 h-7" />
             <span className="text-text font-semibold text-sm">TestLink</span>
           </Link>
 

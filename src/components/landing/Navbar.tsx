@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/Logo";
 
 const navLinks = [
   { label: "Features", href: "/features" },
@@ -60,9 +61,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0" onClick={() => setMobileOpen(false)}>
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="text-white font-bold text-xs sm:text-sm">T</span>
-          </div>
+          <Logo className="w-7 h-7 sm:w-8 sm:h-8" />
           <span className="text-text font-bold text-base sm:text-lg tracking-tight">
             TestLink
           </span>
