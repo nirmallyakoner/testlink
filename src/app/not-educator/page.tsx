@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 
 export const metadata = {
   title: "Educator Access Only — TestLink",
@@ -10,9 +11,7 @@ export default function NotEducatorPage() {
     <div className="min-h-screen flex items-center justify-center px-6">
       <div className="text-center max-w-sm">
         {/* Logo mark */}
-        <div className="w-16 h-16 rounded-2xl bg-surface border border-border flex items-center justify-center mx-auto mb-6">
-          <span className="text-2xl font-black text-primary font-display">T</span>
-        </div>
+        <Logo className="w-16 h-16 mx-auto mb-6 drop-shadow-xl" />
 
         <h1 className="text-2xl font-bold text-text mb-3">
           Educator Access Only

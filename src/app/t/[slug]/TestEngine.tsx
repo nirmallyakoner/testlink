@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
+import { Logo } from "@/components/ui/Logo";
 
 type TestInfo = {
   id: string;
@@ -188,9 +189,7 @@ export function TestEngine({
           >
             <div className="w-full max-w-sm text-center">
               <div className="bg-surface border border-border rounded-2xl p-6 sm:p-8 mb-4">
-                <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mx-auto mb-5">
-                  <span className="text-white font-bold text-lg">T</span>
-                </div>
+                <Logo className="w-12 h-12 mx-auto mb-5 drop-shadow-lg" />
 
                 <p className="text-xs text-text-muted mb-1">
                   Test by {test.educator_name}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import { Logo } from "@/components/ui/Logo";
 
 export function LoginContent() {
   const [loading, setLoading] = useState(false);
@@ -43,9 +44,7 @@ export function LoginContent() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 mb-10 justify-center">
-          <div className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="text-white font-bold">T</span>
-          </div>
+          <Logo className="w-9 h-9" />
           <span className="text-text font-bold text-xl tracking-tight">
             TestLink
           </span>

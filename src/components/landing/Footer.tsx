@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 
 const productLinks = [
   { label: "Features", href: "/features" },
@@ -27,9 +28,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg gradient-primary flex items-center justify-center">
-                <span className="text-white font-bold text-xs">T</span>
-              </div>
+              <Logo className="w-7 h-7" />
               <span className="text-text font-semibold text-sm">TestLink</span>
             </Link>
             <p className="text-xs text-text-muted leading-relaxed max-w-[200px]">
