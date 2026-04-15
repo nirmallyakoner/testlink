@@ -28,16 +28,16 @@ const features = [
     tag: "Analytics",
   },
   {
-    title: "Share Anywhere",
+    title: "Draft & Edit Mode",
     description:
-      "One link that works everywhere — WhatsApp, Telegram, YouTube descriptions, Instagram bio, email. No platform lock-in.",
-    tag: "Universal",
+      "Review your AI-generated draft, add custom questions, or fix typos before publishing. Once published, your questions are securely locked in.",
+    tag: "Control",
   },
   {
-    title: "Mobile-First Design",
+    title: "Time Limits",
     description:
-      "Built for the students who open your link on a budget Android phone on mobile data. Every screen is optimized for 375px screens.",
-    tag: "Responsive",
+      "Set strict countdown timers for your mock tests. Force auto-submit when the clock runs out to simulate true exam pressure.",
+    tag: "Exam Simulation",
   },
 ];
 

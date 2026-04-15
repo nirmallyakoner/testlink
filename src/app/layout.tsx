@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://testlink.in"),
+  metadataBase: new URL("https://testlink.online"),
   title: {
-    default: "TestLink — Instant Test Links for Educators | AI-Powered MCQ Platform",
+    default: "Free Online Mock Test Maker | Create Shareable Links — TestLink",
     template: "%s | TestLink",
   },
   description:
-    "Create shareable MCQ test links in 60 seconds. AI-powered question parsing, live leaderboards, and instant results. Built for India's independent educators — YouTube teachers, coaching institutes, and private tutors.",
+    "Turn messy PDFs or notes into shareable MCQ test links in 60 seconds using AI. Live student leaderboards, instant analytics, mobile-first design. Better than Google Forms.",
   keywords: [
     "test link generator",
     "online MCQ test maker",
@@ -42,11 +42,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://testlink.in",
+    url: "https://testlink.online",
     siteName: "TestLink",
-    title: "TestLink — Instant Test Links for Educators",
+    title: "Free Online Mock Test Maker | Create Shareable Links",
     description:
-      "Paste your questions, get a live test link. Students compete on a real-time leaderboard. Built for India's educators.",
+      "Turn messy PDFs or notes into shareable MCQ test links in 60 seconds. AI parsing, live student leaderboards, instant analytics. Ditch Google Forms.",
     images: [
       {
         url: "/og-image.png",
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TestLink — Instant Test Links for Educators",
+    title: "Free Online Mock Test Maker | TestLink",
     description:
-      "Paste your questions, get a live test link. Students compete on a real-time leaderboard.",
+      "Paste your messy PDF questions and get a live, shareable test link instantly. Live leaderboards and analytics.",
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://testlink.in",
+    canonical: "https://testlink.online",
   },
   category: "Education",
 };
@@ -74,9 +74,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "TestLink",
-  url: "https://testlink.in",
+  url: "https://testlink.online",
   description:
-    "Create shareable MCQ test links in 60 seconds with AI-powered question parsing and live leaderboards.",
+    "Create shareable MCQ test links in 60 seconds from PDF questions with AI-powered question parsing and live leaderboards.",
   applicationCategory: "EducationalApplication",
   operatingSystem: "Web",
   offers: {
@@ -88,7 +88,7 @@ const jsonLd = {
   creator: {
     "@type": "Organization",
     name: "TestLink",
-    url: "https://testlink.in",
+    url: "https://testlink.online",
   },
   featureList: [
     "AI-powered MCQ question parsing",

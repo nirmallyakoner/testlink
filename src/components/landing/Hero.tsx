@@ -44,9 +44,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Turn any question bank into a shareable test link with a live
-          leaderboard. AI parses your questions. Students compete for rank.
-          No app download. No setup. 60 seconds.
+          Ditch Google Forms. Turn messy PDFs into a shareable test link with a live
+          leaderboard in 60 seconds using AI. Students compete for rank — no app download required.
         </motion.p>
 
         {/* CTA */}
@@ -122,14 +121,18 @@ export function Hero() {
                 </div>
 
                 {/* Mock leaderboard rows */}
-                <div className="space-y-1.5 sm:space-y-2">
+                <div className="space-y-1.5 sm:space-y-2 relative h-[140px] sm:h-[160px] overflow-hidden">
                   {[
-                    { rank: 1, name: "Ramesh K.", score: "50/50", time: "18:02" },
-                    { rank: 2, name: "Priya S.", score: "49/50", time: "21:44" },
-                    { rank: 3, name: "Aarav M.", score: "48/50", time: "19:33" },
+                    { rank: 1, name: "Ramesh K.", score: "50/50", time: "18:02", delay: 1.0 },
+                    { rank: 2, name: "Priya S.", score: "49/50", time: "21:44", delay: 1.2 },
+                    { rank: 3, name: "Aarav M.", score: "48/50", time: "19:33", delay: 1.4 },
+                    { rank: 4, name: "Sneha P.", score: "47/50", time: "17:15", delay: 1.6 },
                   ].map((row) => (
-                    <div
+                    <motion.div
                       key={row.rank}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: row.delay, ease: "easeOut" }}
                       className="flex items-center gap-2 sm:gap-3 bg-bg/50 rounded-lg px-2.5 sm:px-4 py-2 sm:py-2.5"
                     >
                       <span
@@ -137,7 +140,8 @@ export function Hero() {
                           "font-mono text-[10px] sm:text-xs font-bold min-w-[24px] sm:min-w-[28px] h-5 sm:h-6 flex items-center justify-center rounded-full shrink-0",
                           row.rank === 1 && "bg-gold/15 text-gold",
                           row.rank === 2 && "bg-silver/15 text-silver",
-                          row.rank === 3 && "bg-bronze/15 text-bronze"
+                          row.rank === 3 && "bg-bronze/15 text-bronze",
+                          row.rank > 3 && "bg-surface-2 text-text-secondary"
                         )}
                       >
                         #{row.rank}
@@ -154,7 +158,7 @@ export function Hero() {
                       <span className="text-[10px] sm:text-xs text-text-muted font-mono shrink-0 hidden xs:inline">
                         {row.time}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
