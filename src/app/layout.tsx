@@ -47,12 +47,21 @@ export const metadata: Metadata = {
     title: "Free Online Mock Test Maker | Create Shareable Links",
     description:
       "Turn messy PDFs or notes into shareable MCQ test links in 60 seconds. AI parsing, live student leaderboards, instant analytics. Ditch Google Forms.",
+    images: [
+      {
+        url: "https://testlink.online/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TestLink — Create shareable test links with live leaderboards",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Online Mock Test Maker | TestLink",
     description:
       "Paste your messy PDF questions and get a live, shareable test link instantly. Live leaderboards and analytics.",
+    images: ["https://testlink.online/og-image.png"],
   },
   alternates: {
     canonical: "https://testlink.online",
