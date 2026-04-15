@@ -9,6 +9,7 @@ export default async function DashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Fetch ALL tests (drafts + published) — no is_published filter
   const { data: tests } = await supabase
     .from("tests")
     .select(
@@ -17,7 +18,7 @@ export default async function DashboardPage() {
     .eq("educator_id", user!.id)
     .order("created_at", { ascending: false });
 
-  // Fetch attempt counts in parallel
+  // Fetch submission counts
   const testsWithCounts = await Promise.all(
     (tests ?? []).map(async (test) => {
       const { count } = await supabase
@@ -28,6 +29,9 @@ export default async function DashboardPage() {
     })
   );
 
+  const liveCount = testsWithCounts.filter((t) => t.is_published).length;
+  const draftCount = testsWithCounts.filter((t) => !t.is_published).length;
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       {/* Header */}
@@ -35,8 +39,7 @@ export default async function DashboardPage() {
         <div>
           <h1 className="text-2xl font-bold text-text">Your Tests</h1>
           <p className="text-sm text-text-secondary mt-1">
-            {testsWithCounts.length} test
-            {testsWithCounts.length !== 1 ? "s" : ""} created
+            {liveCount} live{draftCount > 0 && <span className="text-warning"> · {draftCount} draft{draftCount !== 1 ? "s" : ""}</span>}
           </p>
         </div>
         <Link href="/dashboard/create">

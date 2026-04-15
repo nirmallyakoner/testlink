@@ -250,7 +250,7 @@ export type Database = {
       }
       questions: {
         Row: {
-          correct: string
+          correct: string | null
           created_at: string
           explanation: string | null
           id: string
@@ -264,7 +264,7 @@ export type Database = {
           test_id: string
         }
         Insert: {
-          correct: string
+          correct?: string | null
           created_at?: string
           explanation?: string | null
           id?: string
@@ -278,7 +278,7 @@ export type Database = {
           test_id: string
         }
         Update: {
-          correct?: string
+          correct?: string | null
           created_at?: string
           explanation?: string | null
           id?: string

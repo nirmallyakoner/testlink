@@ -135,7 +135,7 @@ export default async function AnalyticsPage({ params }: PageProps) {
       option_b: q.option_b,
       option_c: q.option_c,
       option_d: q.option_d,
-      correct: q.correct.trim(),
+      correct: (q.correct ?? "").trim(),
       correct_count: correctCount,
       wrong_count: wrongCount,
       skipped_count: skippedCount,

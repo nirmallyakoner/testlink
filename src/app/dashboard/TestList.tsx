@@ -52,9 +52,13 @@ export function TestList({ tests }: { tests: Test[] }) {
                   <h3 className="text-base font-semibold text-text truncate">
                     {test.title}
                   </h3>
-                  {test.is_published && (
+                  {test.is_published ? (
                     <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-success bg-success/10 px-2 py-0.5 rounded-full">
                       Live
+                    </span>
+                  ) : (
+                    <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wider text-warning bg-warning/10 px-2 py-0.5 rounded-full">
+                      Draft
                     </span>
                   )}
                 </div>
@@ -67,41 +71,58 @@ export function TestList({ tests }: { tests: Test[] }) {
 
               {/* Right: Stats + actions */}
               <div className="flex items-center gap-4 sm:gap-6">
-                <div className="text-center">
-                  <p className="text-lg font-bold font-mono text-text">
-                    {test.attempts.toLocaleString()}
-                  </p>
-                  <p className="text-[10px] text-text-muted uppercase tracking-wider">
-                    Attempts
-                  </p>
-                </div>
+                {/* Attempt count — only meaningful for live tests */}
+                {test.is_published && (
+                  <div className="text-center">
+                    <p className="text-lg font-bold font-mono text-text">
+                      {test.attempts.toLocaleString()}
+                    </p>
+                    <p className="text-[10px] text-text-muted uppercase tracking-wider">
+                      Attempts
+                    </p>
+                  </div>
+                )}
 
                 <div className="flex items-center gap-2">
-                  <button
-                    className="text-xs text-text-secondary hover:text-text bg-surface-2 hover:bg-surface-hover px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        `${window.location.origin}/t/${test.slug}`
-                      )
-                    }
-                  >
-                    Copy Link
-                  </button>
+                  {/* Edit — always visible */}
                   <Link
-                    href={`/t/${test.slug}`}
-                    target="_blank"
+                    href={`/dashboard/tests/${test.id}/edit`}
                     className="text-xs text-text-secondary hover:text-text bg-surface-2 hover:bg-surface-hover px-3 py-1.5 rounded-lg transition-colors"
                   >
-                    Preview
+                    Edit
                   </Link>
-                  <Link
-                    href={`/dashboard/tests/${test.id}/analytics`}
-                    className="text-xs text-primary hover:text-primary-light bg-primary/10 hover:bg-primary/15 px-3 py-1.5 rounded-lg transition-colors font-medium"
-                  >
-                    Analytics
-                  </Link>
+
+                  {/* Live-only actions */}
+                  {test.is_published && (
+                    <>
+                      <button
+                        className="text-xs text-text-secondary hover:text-text bg-surface-2 hover:bg-surface-hover px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                        onClick={() =>
+                          navigator.clipboard.writeText(
+                            `${window.location.origin}/t/${test.slug}`
+                          )
+                        }
+                      >
+                        Copy Link
+                      </button>
+                      <Link
+                        href={`/t/${test.slug}`}
+                        target="_blank"
+                        className="text-xs text-text-secondary hover:text-text bg-surface-2 hover:bg-surface-hover px-3 py-1.5 rounded-lg transition-colors"
+                      >
+                        Preview
+                      </Link>
+                      <Link
+                        href={`/dashboard/tests/${test.id}/analytics`}
+                        className="text-xs text-primary hover:text-primary-light bg-primary/10 hover:bg-primary/15 px-3 py-1.5 rounded-lg transition-colors font-medium"
+                      >
+                        Analytics
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
+
             </div>
           </Card>
         </motion.div>
