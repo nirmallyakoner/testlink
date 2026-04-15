@@ -187,7 +187,7 @@ export function TestEngine({
             exit={{ opacity: 0 }}
           >
             <div className="w-full max-w-sm text-center">
-              <div className="bg-surface border border-border rounded-2xl p-8 mb-6">
+              <div className="bg-surface border border-border rounded-2xl p-6 sm:p-8 mb-4">
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mx-auto mb-5">
                   <span className="text-white font-bold text-lg">T</span>
                 </div>
@@ -333,9 +333,9 @@ export function TestEngine({
           >
             {/* Top bar */}
             <div className="sticky top-0 z-40 bg-bg/90 backdrop-blur-xl border-b border-border">
-              <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-semibold text-text">
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-text truncate">
                     {test.title}
                   </p>
                   <p className="text-xs text-text-muted">
@@ -379,14 +379,14 @@ export function TestEngine({
               </div>
 
               {/* Question nav pills */}
-              <div className="max-w-3xl mx-auto px-6 pb-3">
-                <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-3">
+                <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
                   {questions.map((q, i) => (
                     <a
                       key={q.id}
                       href={`#q-${q.id}`}
                       className={cn(
-                        "w-8 h-8 flex items-center justify-center text-xs font-mono font-medium rounded-lg shrink-0 transition-colors",
+                        "w-9 h-9 flex items-center justify-center text-xs font-mono font-semibold rounded-lg shrink-0 transition-colors",
                         answers[q.id]
                           ? "bg-success/15 text-success border border-success/30"
                           : "bg-surface-2 text-text-muted border border-border hover:border-border-hover"
@@ -400,7 +400,7 @@ export function TestEngine({
             </div>
 
             {/* Questions */}
-            <div className="max-w-3xl mx-auto px-6 py-6 space-y-6 pb-28">
+            <div className="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-32">
               {submitError && (
                 <div className="p-4 bg-error/10 border border-error/20 rounded-xl text-sm text-error">
                   {submitError}
@@ -411,18 +411,18 @@ export function TestEngine({
                 <div
                   key={q.id}
                   id={`q-${q.id}`}
-                  className="bg-surface border border-border rounded-2xl p-6"
+                  className="bg-surface border border-border rounded-2xl p-4 sm:p-6"
                 >
-                  <div className="flex items-start gap-3 mb-5">
-                    <span className="text-xs font-mono font-bold text-text-muted bg-surface-2 px-2.5 py-1 rounded shrink-0">
+                  <div className="flex items-start gap-3 mb-4">
+                    <span className="text-xs font-mono font-bold text-text-muted bg-surface-2 px-2.5 py-1 rounded shrink-0 mt-0.5">
                       {i + 1}
                     </span>
-                    <p className="text-base text-text leading-relaxed">
+                    <p className="text-sm sm:text-base text-text leading-relaxed">
                       {q.question_text}
                     </p>
                   </div>
 
-                  <div className="space-y-2.5 ml-8">
+                  <div className="space-y-2.5">
                     {(["a", "b", "c", "d"] as const).map((opt) => {
                       const key = `option_${opt}` as keyof TestQuestion;
                       const text = q[key] as string | null;
@@ -434,15 +434,15 @@ export function TestEngine({
                           onClick={() => handleSelectOption(q.id, opt)}
                           disabled={state === "submitting"}
                           className={cn(
-                            "w-full text-left px-4 py-3 rounded-xl border text-sm transition-all cursor-pointer disabled:cursor-not-allowed",
+                            "w-full text-left px-4 py-3.5 rounded-xl border text-sm transition-all cursor-pointer disabled:cursor-not-allowed min-h-[52px] flex items-center gap-3",
                             isSelected
-                              ? "border-primary/50 bg-primary/8 text-text"
+                              ? "border-primary/60 bg-primary/10 text-text"
                               : "border-border bg-surface-2 text-text-secondary hover:border-border-hover hover:bg-surface-hover"
                           )}
                         >
                           <span
                             className={cn(
-                              "inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold mr-3 uppercase",
+                              "inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold shrink-0 uppercase",
                               isSelected
                                 ? "bg-primary text-white"
                                 : "bg-bg text-text-muted"
@@ -450,7 +450,7 @@ export function TestEngine({
                           >
                             {opt}
                           </span>
-                          {text}
+                          <span className="flex-1 leading-snug">{text}</span>
                         </button>
                       );
                     })}
@@ -460,14 +460,19 @@ export function TestEngine({
             </div>
 
             {/* Sticky submit bar */}
-            <div className="fixed bottom-0 left-0 right-0 bg-bg/90 backdrop-blur-xl border-t border-border">
-              <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-                <p className="text-sm text-text-secondary">
-                  {answeredCount} of {totalQuestions} answered
-                </p>
+            <div className="fixed bottom-0 left-0 right-0 bg-bg/90 backdrop-blur-xl border-t border-border safe-area-bottom">
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold text-text">
+                    {answeredCount}/{totalQuestions}
+                  </p>
+                  <p className="text-xs text-text-muted">Answered</p>
+                </div>
                 <Button
                   onClick={() => setShowConfirm(true)}
                   disabled={state === "submitting"}
+                  size="lg"
+                  className="min-w-[140px]"
                 >
                   {state === "submitting" ? (
                     <span className="flex items-center gap-2">
